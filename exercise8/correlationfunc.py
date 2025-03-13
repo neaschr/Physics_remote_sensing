@@ -1,5 +1,6 @@
 import numpy as np
 
+#Making functions for the surface roughness spectrums, Gaussian and exponential
 def Gaussian_correlation_func(corr_length, theta, wavelength) -> float:
 
     '''

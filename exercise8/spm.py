@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import correlationfunc as cf
 
+#Making a function to calculate scattering crossection
 def scattering_crossec(wavelength: float, theta: float, W: float, h: float, epsilon: float) -> tuple:
     """
     Computes the radar scattering cross-sections using the Small Perturbation Model (SPM).
@@ -31,19 +32,22 @@ def scattering_crossec(wavelength: float, theta: float, W: float, h: float, epsi
 
 if __name__ == "__main__":
 
-    incident_angles = np.linspace(0, np.pi, 100)
+    incident_angles = np.linspace(0, np.pi, 100) #Angles in radians from 0 to pi
     correlation_length = 0.1 #m
     rms_height = 0.01 #m
     diel_const = 3
     wavel = 0.35 #m 
 
+    #making arrays to store the calculated data
     scattering_gauss_hh = np.zeros(len(incident_angles))
     scattering_gauss_vv = np.zeros(len(incident_angles))
     scattering_exp_hh = np.zeros(len(incident_angles))   
     scattering_exp_vv = np.zeros(len(incident_angles))   
     
+    #making a counter
     i = 0
 
+    #Finding the surface function and then the scattering crossections
     for incident_angle in incident_angles:
         gauss_surface = cf.Gaussian_correlation_func(correlation_length, incident_angle, wavel)
         exp_surface = cf.exp_correlation_func(correlation_length, incident_angle, wavel)
