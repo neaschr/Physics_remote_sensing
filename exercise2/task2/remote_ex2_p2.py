@@ -24,8 +24,12 @@ def reflection_coeff_h(theta: np.ndarray, n_in: float, n_out: float) -> np.ndarr
     #Finding transmission angles in radians 
     theta_t = np.arcsin(sin_theta_t)
 
-    #Fresnel equation
-    R_sq = ((np.sin(theta - theta_t))**2) / ((np.sin(theta + theta_t))**2)
+    #Fresnel equation, with handling for normal incidence
+    specialcase = (theta == 0)
+    R_sq = np.empty_like(theta)
+    R_sq[~specialcase] = ((np.sin(theta[~specialcase] - 
+                                  theta_t[~specialcase]))**2) / ((np.sin(theta[~specialcase] + theta_t[~specialcase]))**2)
+    R_sq[specialcase] = ((n_in-n_out)/(n_in+n_out))**2 
 
     return R_sq
 
@@ -52,8 +56,12 @@ def reflection_coeff_v(theta: np.ndarray, n_in: float, n_out: float) -> np.ndarr
     #Finding transmission angles in radians 
     theta_t = np.arcsin(sin_theta_t)
 
-    #Fresnel equation
-    R_sq = ((np.tan(theta - theta_t))**2) / ((np.tan(theta + theta_t))**2)
+    #Fresnel equation, with handling for normal incidence
+    specialcase = (theta == 0)
+    R_sq = np.empty_like(theta)
+    R_sq[~specialcase] = ((np.tan(theta[~specialcase] - 
+                                  theta_t[~specialcase]))**2) / ((np.tan(theta[~specialcase] + theta_t[~specialcase]))**2)
+    R_sq[specialcase] = ((n_in-n_out)/(n_in+n_out))**2 
 
     return R_sq
 
@@ -65,7 +73,7 @@ if __name__ == '__main__':
     n_3 = 9
 
     #Making arrays for angles, first in radians then in degrees for plotting
-    angles = np.linspace(0.001, np.pi/2, 10000)
+    angles = np.linspace(0.0, np.pi/2, 10000)
     angles2 = (angles/np.pi) * 180
 
     #Calculating
