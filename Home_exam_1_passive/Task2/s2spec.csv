@@ -1,0 +1,14 @@
+Band,Name,Central Wavelength (nm),Bandwidth (nm),Spatial Resolution (m)
+1,Coastal aerosol,442.7,21,60
+2,Blue,492.4,66,10
+3,Green,559.8,36,10
+4,Red,664.6,31,10
+5,Vegetation red edge,704.1,15,20
+6,Vegetation red edge,740.5,15,20
+7,Vegetation red edge,782.8,20,20
+8,NIR,832.8,106,10
+8A,Narrow NIR,864.7,21,20
+9,Water vapour,945.1,20,60
+10,SWIR - Cirrus,1373.5,31,60
+11,SWIR,1613.7,91,20
+12,SWIR,2202.4,175,20
